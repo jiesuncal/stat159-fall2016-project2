@@ -27,4 +27,4 @@ data/
 
 # Credit
 
-Credit to authors of the book "[An Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/)" - Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani.
+* Credit to authors of the book "[An Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/)" - Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani.
