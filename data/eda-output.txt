@@ -1,0 +1,79 @@
+           Income     Limit   Rating    Cards      Age Education   Balance
+Min.     10.35000   855.000  93.0000 1.000000 23.00000  5.000000    0.0000
+1st Qu.  21.01000  3088.000 247.2000 2.000000 41.75000 11.000000   68.7500
+Median   33.12000  4622.000 344.0000 3.000000 56.00000 14.000000  459.5000
+Mean     45.22000  4736.000 354.9000 2.958000 55.67000 13.450000  520.0000
+3rd Qu.  57.47000  5873.000 437.2000 4.000000 70.00000 16.000000  863.0000
+Max.    186.60000 13910.000 982.0000 9.000000 98.00000 20.000000 1999.0000
+Range   176.28000 13058.000 889.0000 8.000000 75.00000 15.000000 1999.0000
+IQR      36.46350  2784.750 190.0000 2.000000 28.25000  5.000000  794.2500
+SD       35.24427  2308.199 154.7241 1.371275 17.24981  3.125207  459.7589
+  Gender Freq Proportion
+1   Male  193     0.4825
+2 Female  207     0.5175
+  Student Freq Proportion
+1      No  360        0.9
+2     Yes   40        0.1
+  Married Freq Proportion
+1      No  155     0.3875
+2     Yes  245     0.6125
+         Ethnicity Freq Proportion
+1 African American   99     0.2475
+2            Asian  102     0.2550
+3        Caucasian  199     0.4975
+               Income       Limit      Rating       Cards         Age
+Income     1.00000000  0.79208834  0.79137763 -0.01827261 0.175338403
+Limit      0.79208834  1.00000000  0.99687974  0.01023133 0.100887922
+Rating     0.79137763  0.99687974  1.00000000  0.05323903 0.103164996
+Cards     -0.01827261  0.01023133  0.05323903  1.00000000 0.042948288
+Age        0.17533840  0.10088792  0.10316500  0.04294829 1.000000000
+Education -0.02769198 -0.02354853 -0.03013563 -0.05108422 0.003619285
+Balance    0.46365646  0.86169727  0.86362516  0.08645635 0.001835119
+             Education      Balance
+Income    -0.027691982  0.463656457
+Limit     -0.023548534  0.861697267
+Rating    -0.030135627  0.863625161
+Cards     -0.051084217  0.086456347
+Age        0.003619285  0.001835119
+Education  1.000000000 -0.008061576
+Balance   -0.008061576  1.000000000
+Call:
+   aov(formula = Balance ~ Gender, data = credit)
+
+Terms:
+                  Gender Residuals
+Sum of Squares     38892  84301020
+Deg. of Freedom        1       398
+
+Residual standard error: 460.23
+Estimated effects may be unbalanced
+Call:
+   aov(formula = Balance ~ Student, data = credit)
+
+Terms:
+                 Student Residuals
+Sum of Squares   5658372  78681540
+Deg. of Freedom        1       398
+
+Residual standard error: 444.626
+Estimated effects may be unbalanced
+Call:
+   aov(formula = Balance ~ Married, data = credit)
+
+Terms:
+                 Married Residuals
+Sum of Squares      2715  84337197
+Deg. of Freedom        1       398
+
+Residual standard error: 460.3287
+Estimated effects may be unbalanced
+Call:
+   aov(formula = Balance ~ Ethnicity, data = credit)
+
+Terms:
+                Ethnicity Residuals
+Sum of Squares      18454  84321458
+Deg. of Freedom         2       397
+
+Residual standard error: 460.8651
+Estimated effects may be unbalanced
