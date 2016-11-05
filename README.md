@@ -123,9 +123,27 @@ stat159-fall2016-project2/
 
 ## List of Make Commands for Phony Targets
 
+`Makefile` should have the following Phony targets:
+
+- `all:` will be associated to phony targets `eda`, `regressions`, and `report`
+- `data:` will download the file `Credit.csv` to the folder `data/` 
+- `tests:` will run the unit tests of your functions
+- `eda:` will perform the exploratory data analysis
+- `ols`: OLS regression
+- `ridge`: Rdige Regression
+- `lasso`: Lasso Regression
+- `pcr`: Principal Components Regression
+- `plsr`: Partial Least Squares Regression
+- `regressions`: all five types of regressions
+- `report:` will generate `report.pdf` (or `report.html`)
+- `slides`: will generate `slides.html`
+- `session`: will generate `session-info.txt`
+- `clean:` will delete the generated report (pdf and/or html)
+
+
 
 ## License
-This project is under a `MIT` License. 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
 ## Authors Names:
 * Jie Sun
