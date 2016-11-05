@@ -1,0 +1,36 @@
+# Analysis
+
+## Exploratory Phase
+In order to perform data analysis, it is important for us to understand the data by obtaining descriptive statistics and summaries of the variables of our current data set. Therefore, for the exploratory phase, we are looking at the some quantitative results:
+
+
+- Minimum, Maximum, Range
+- Median, First and Third quartiles, and interquartile range (IQR)
+- Mean and Standard Deviation
+- Histograms and boxplots
+- matrix of correlations among all quantitative variables.
+- scatterplot matrix.
+- anova's between `Balance` and all the qualitative variables 
+- conditional boxplots between `Balance` and the qualitative variables, 
+that is, boxplots of `Balance` conditioned to each of `Gender`, `Ethnicity`, 
+`Student`, and `Married`.
+
+These results will help undestanding the data set. The images are all saved in the `images` folder of this project.
+
+
+## Pre-modelling Data Processing
+
+In order to fit the data set with our intended regression models, it is important for us to perform data processing beforehand. 
+
+
+The first step in this data processing part is to dummy out the categorical variables. Since the `ridge` regression and `lasso` regression (implemented by `glmnet()` function) we are going to use in the next section do not support categorical variables, we need to transform these categorical variables into dummy variables. This transformation can be performed by setting binary indicators to expand a factor. For example, with `gender`, which has value of `male` and `female`, we can transform it into binary indicator of 1 or 0.  
+
+
+The second step in this data process is to perform mean centering and standardization because we want to make each variable have comparable scales. While the value of coefficients could be affected because of the measurement scale, we want to avoid favoring a specific coefficient by standardizing the variables, which means that we will transform each variable to have a mean of zero and a standard deviation of one.
+
+## Splitting Test Set and Train Set
+
+To get a fair evaulation of how to regression model performs, we need to split the data set into train set and test set so we can avoid overfitting. According to the instruction of the project, we are splitting it into a test set of 100 rows of data and a train set of 300 rows of data. Moreover, to ensure the reproducibility of this project, we are also utilizing the `set.seed()` function to make the results reproducible.
+
+## Cross-validation
+Through out the later sections of the project, we will be using 10-fold cross-validation to pick our best model. Since cross-validation employs a random sampling through the process, it is also essential to mention that we will utilize `set.seed()` to ensure that our project results are reproducible.
