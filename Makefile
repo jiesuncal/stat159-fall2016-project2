@@ -54,17 +54,14 @@ regressions:
 	make plsr
 
 # concatenate all sections into a report
-report/report.Rmd: report/sections/*.md
-	cat report/sections/*.Rmd > report/report.Rmd
-
 # generate report.pdf (or report.html)
-report: report/report.Rmd eda preprocess regressions
+report: eda preprocess regressions
+	cat report/sections/*.Rmd > report/report.Rmd
 	$(rs) -e 'library(rmarkdown); render("report/report.Rmd","pdf_document")'
-	$(rs) -e 'library(rmarkdown); render("report/report.Rmd","html_document")'
 
 # generate slides.html
 slides: slides/slides.Rmd
-	$(rs) -e 'library(rmarkdown); render("slides/slides.Rmd","html_document")'
+	$(rs) -e 'library(rmarkdown); render("slides/slides.Rmd","ioslides_presentation")'
 
 # generate session-info.txt using make automatic variable
 session: session.sh
@@ -73,4 +70,3 @@ session: session.sh
 # clean up report outputs
 clean:
 	rm -f report/report.pdf
-	rm -f report/report.html

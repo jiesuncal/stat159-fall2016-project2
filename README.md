@@ -92,7 +92,9 @@ stat159-fall2016-project2/
         	05-results.Rmd
         	06-conclusions.Rmd
     slides/
-    	...
+    	slides.Rmd
+      slides.html
+      README.md
 ```
 
 ## Instruction on Reproducing this Project
@@ -126,7 +128,7 @@ stat159-fall2016-project2/
 `Makefile` should have the following Phony targets:
 
 - `all:` will be associated to phony targets `eda`, `regressions`, and `report`
-- `data:` will download the file `Credit.csv` to the folder `data/` 
+- `data:` will download the file `Credit.csv` to the folder `data/`
 - `tests:` will run the unit tests of your functions
 - `eda:` will perform the exploratory data analysis
 - `ols`: OLS regression
