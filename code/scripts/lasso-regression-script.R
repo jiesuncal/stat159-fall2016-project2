@@ -4,9 +4,9 @@ library("glmnet")
 set.seed(42)
 
 # Read in Data Sets
-train_set = read.csv(file='../../data/train-set.csv')
-test_set = read.csv(file='../../data/test-set.csv')
-full_set = read.csv(file = '../../data/scaled-credit.csv')
+train_set = read.csv(file='../../data/train-set.csv', row.names=1)
+test_set = read.csv(file='../../data/test-set.csv', row.names=1)
+full_set = read.csv(file = '../../data/scaled-credit.csv', row.names=1)
 
 # Apply Lasso Regression Models
 train_x = as.matrix(train_set[-12])
@@ -36,5 +36,4 @@ full_y = as.matrix(full_set[12])
 lasso_full_model = glmnet(full_x, full_y, lambda=min_grid, intercept=FALSE, standardize=FALSE, alpha=1)
 
 # save list of models, test MSE and final coefficient estimates
-save(lasso_model_list, lasso_mse, lasso_full_model, file="../../data/lasso-data.RData")
-
+save(lasso_model_list, min_grid, lasso_mse, lasso_full_model, file="../../data/lasso-data.RData")
