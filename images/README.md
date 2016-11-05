@@ -1,0 +1,3 @@
+# Images
+
+* This is the image folder that contains all the images generated during our predictive modelling process. This includes the `boxplot`, `barplot` and `histograms` generated during the exploratory data analysis process. Moreover, it also contains the errors rate plot for each of the five regression models - `ridge regression`, `lasso regression`, `principal components regression`, `ordinary least squares` and `partial least square regression`. Additionally, we also have the scatter plot of the correlation matrix in this folder.
