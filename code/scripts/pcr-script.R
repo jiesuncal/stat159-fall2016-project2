@@ -1,5 +1,5 @@
 library("pls")
-set.seed(42)
+set.seed(23)
 
 # read in data sets
 train_set = read.csv("../../data/train-set.csv", row.names=1)
@@ -10,8 +10,8 @@ full_set = read.csv("../../data/scaled-credit.csv", row.names=1)
 pcr_cv = pcr(balance ~ ., data=train_set, validation="CV")
 
 # select the best model
-best_ncomp = which.min(pcr_cv$validation$PRESS)
-pcr_best_model = pcr(balance ~ ., data=train_set, ncomp=best_ncomp)
+pcr_best_ncomp = which.min(pcr_cv$validation$PRESS)
+pcr_best_model = pcr(balance ~ ., data=train_set, ncomp=pcr_best_ncomp)
 
 # plot cross-validation errors
 png("../../images/pcr-cross-validation-errors.png")
@@ -26,7 +26,7 @@ predict_y = predict(object=pcr_best_model, newx=test_x)
 pcr_mse = mean((predict_y-test_y)**2)
 
 # refit on full dataset
-pcr_full_model = pcr(balance ~ ., data=full_set, ncomp=best_ncomp)
+pcr_full_model = pcr(balance ~ ., data=full_set, ncomp=pcr_best_ncomp)
 
 # save list of models, best number of components, test MSE and final coefficient estimates
-save(pcr_cv, best_ncomp, pcr_mse, pcr_full_model, file="../../data/pcr-data.RData")
+save(pcr_cv, pcr_best_ncomp, pcr_mse, pcr_full_model, file="../../data/pcr-data.RData")

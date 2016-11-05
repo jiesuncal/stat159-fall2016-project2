@@ -1,5 +1,5 @@
 library("pls")
-set.seed(42)
+set.seed(23)
 
 # read in data sets
 train_set = read.csv("../../data/train-set.csv", row.names=1)
@@ -10,8 +10,8 @@ full_set = read.csv("../../data/scaled-credit.csv", row.names=1)
 plsr_cv = plsr(balance ~ ., data=train_set, validation='CV')
 
 # select the best model
-best_ncomp = which.min(plsr_cv$validation$PRESS)
-plsr_best_model = plsr(balance ~ ., data=train_set, ncomp=best_ncomp)
+plsr_best_ncomp = which.min(plsr_cv$validation$PRESS)
+plsr_best_model = plsr(balance ~ ., data=train_set, ncomp=plsr_best_ncomp)
 
 # plot cross-validation errors
 png("../../images/plsr-cross-validation-errors.png")
@@ -26,7 +26,7 @@ predict_y = predict(object=plsr_best_model, newx=test_x)
 plsr_mse = mean((predict_y-test_y)**2)
 
 # refit on full dataset
-plsr_full_model = plsr(balance ~., data=full_set, ncomp=best_ncomp)
+plsr_full_model = plsr(balance ~., data=full_set, ncomp=plsr_best_ncomp)
 
 # save list of models, test MSE and final coefficient estimates
-save(plsr_cv, best_ncomp, plsr_mse, plsr_full_model, file="../../data/plsr-data.RData")
+save(plsr_cv, plsr_best_ncomp, plsr_mse, plsr_full_model, file="../../data/plsr-data.RData")
