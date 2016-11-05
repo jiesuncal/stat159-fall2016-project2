@@ -28,5 +28,5 @@ pcr_mse = mean((predict_y-test_y)**2)
 # refit on full dataset
 pcr_full_model = pcr(balance ~ ., data=full_set, ncomp=best_ncomp)
 
-# save list of models, test MSE and final coefficient estimates
-save(pcr_cv, pcr_mse, pcr_full_model, file="../../data/pcr-data.RData")
+# save list of models, best number of components, test MSE and final coefficient estimates
+save(pcr_cv, best_ncomp, pcr_mse, pcr_full_model, file="../../data/pcr-data.RData")
