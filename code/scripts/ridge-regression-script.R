@@ -33,5 +33,5 @@ full_x = as.matrix(full_set[-12])
 full_y = as.matrix(full_set[12])
 ridge_full_model = glmnet(full_x, full_y, lambda=min_grid, intercept=FALSE, standardize=FALSE, alpha=0)
 
-# save list of models, test MSE and final coefficient estimates
-save(ridge_model_list, ridge_mse, ridge_full_model, file="../../data/ridge-data.RData")
+# save list of models, best lambda, test MSE and final coefficient estimates
+save(ridge_model_list, min_grid, ridge_mse, ridge_full_model, file="../../data/ridge-data.RData")
