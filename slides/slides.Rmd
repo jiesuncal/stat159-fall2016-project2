@@ -1,0 +1,64 @@
+---
+title: "Slides for Project 2"
+author: "Jie Sun, Stephen (Mingtao) Fang"
+date: "November 4, 2016"
+output: ioslides_presentation
+---
+
+## Introduction
+
+This project is largely based on the chapter 5 and chapter 6 of the book Introduction to Statistical Learning by James El. As a case study, the book has introduced a credit data set for us to apply five different regression models. In the later sections, we are going to cover in details regarding the data set, the methods and the specific analysis.
+
+## Data
+
+The Credit data set records balance (average credit card debt for a number of individuals) as well as several quantitative predictors: age, cards (number of credit cards), education (years of education), income (in thousands of dollars), limit (credit limit), and rating (credit rating). This data can be downloaded through this [link](http://www-bcf.usc.edu/~gareth/ISL/Credit.csv).
+
+## Methods
+
+In this project, we explore two techniques - shrinkage and dimension reduction. The multiple linear regression model with ordinary least squares is used as a benchmark. We compare its results with other linear models that replace the least squares fitting with shrinkage or dimension reduction.
+
+- Ordinary Least Square
+- Ridge Regression
+- Lasso Regression
+- Principal Components Regression
+- Partial Least Sqaure Regression
+
+## Shrinkage Methods
+
+- Shrinkage methods involve fitting a model using all predictors. However, the estimated coefficients are shrunken towards zero relative to the least squares estimates. This shrinkage (also known as regularization) has the effect of reducing variance. 
+
+- Depending on what type of shrinkage is performed, some of the coefficients may be estimated to be exactly zero. Hence, shrinkage methods can also perform variable selection. 
+
+## Ridge Regression
+
+The ridge regression coefficient estimates are the values that minimize:
+$$\sum\limits^n_{i=1}\bigg(y_i - \beta_0 - \sum\limits^p_{j=1}\beta_j x_{ij}\bigg)^2 + \lambda \sum\limits^p_{j=1} \beta_j^2 = \text{RSS} + \lambda \sum\limits^p_{j=1} \beta^2_j$$
+Ridge regression’s advantage over least squares is rooted in the bias-variance trade-off. As $\lambda$ (a tuning parameter) increases, the flexibility of the ridge regression fit decreases, leading to decreased variance but increased bias. 
+
+
+## Lasso Regression
+
+The lasso coefficients minimize the quality:
+$$\sum\limits^n_{i=1}\bigg(y_i - \beta_0 - \sum\limits^p_{j=1}\beta_j x_{ij}\bigg)^2 + \lambda \sum\limits^p_{j=1} |\beta_j| = \text{RSS} + \lambda \sum\limits^p_{j=1} |\beta_j|$$
+Lasso overcomes the disadvantage of ridge regression by using $l_1$ penalty, which has the effect of forcing some of the coefficient estimates to be exactly equal to zero when $\lambda$ is sufficiently large. 
+				
+## Dimension Reduction
+
+- Dimension reduction involves projecting the $p$ predictors into a $M$-dimensional subspace, where $M$ < $p$. This is achieved by computing $M$ different linear combinations, or projections, of the variables. 
+- These $M$ projections are used as predictors to fit a linear regression model by least squares. In this way, a low-dimensional set of features can be derived from a large set of variables.
+
+## Principal Components Regression			
+
+- Using the principal components analysis (PCA), this regression approach involves constructing the first $M$ principal components, $Z_1,...,Z_M$, and then using these components as the predictors in a linear regression model that is fit using least squares. 
+
+- The key idea is that often a small number of principal components suffice to explain most of the variability in the data, as well as the relationship with the response. 
+
+
+## Partial Least Squares Regression
+
+- The partial least squares (PLS) is a supervised alternative to PCR. Like PCR, PLS first identifies a new set of features $Z_1,...,Z_M$ that are linear combinations of the original features, and then fits a linear model via least squares using these $M$ new features. 
+
+- Unlike PCR, PLS identifies these new features in a supervised way — that is, it makes use of the response $Y$ in order to identify new features that not only approximate the old features well, but also that are related to the response. Roughly speaking, the PLS approach attempts to find directions that help explain both the response and the predictors. 
+
+
+
