@@ -1,3 +1,4 @@
 # Data
 
 The Credit data set records balance (average credit card debt for a number of individuals) as well as several quantitative predictors: age, cards (number of credit cards), education (years of education), income (in thousands of dollars), limit (credit limit), and rating (credit rating). This data can be downloaded through this [link](http://www-bcf.usc.edu/~gareth/ISL/Credit.csv).
+

@@ -34,3 +34,4 @@ To get a fair evaulation of how to regression model performs, we need to split t
 
 ## Cross-validation
 Through out the later sections of the project, we will be using 10-fold cross-validation to pick our best model. Since cross-validation employs a random sampling through the process, it is also essential to mention that we will utilize `set.seed()` to ensure that our project results are reproducible.
+

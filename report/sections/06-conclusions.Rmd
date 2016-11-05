@@ -1,0 +1,7 @@
+# Conclusions
+
+From Table 1, we can tell that coefficients for `Age`, `Education`, `Gender`, `Married` and `Ethnicity` are generally smaller than others, which means they're less influential on the balance of a credit card user. `Income`, `Limit`, `Rating` and `Student` are better predictors in this case. And `Income` negatively associated with `Balance`. The comparison is especially obvious in Lasso regression since Lasso eliminates some variables by setting coefficients to 0. 
+
+In terms of test MSE, Ridge = Lasso < PCR < PLSR. Shrinkage methods perform better than dimentaion reduction methods on this dataset. The takeaway here is that if you don't know which technique works better in the linear regression analysis, it's a good idea to try both on the dataset and choose the better one. 
+
+Also, we only used linear models. The next phase is probably to use some non-linear models and tune the corresponding parameters.

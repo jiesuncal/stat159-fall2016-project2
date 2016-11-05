@@ -1,0 +1,60 @@
+# Results
+
+To understand the data, we computed descriptive statistics and summaries of all variables and stored them in `data/eda-output.txt` in EDA phase. Because we are interested in studying the association between `Balance` and the rest of predictors, we also obtained matrix of correlations, scatterplot matrix, anova and conditional boxplots between Balance and the qualitative variables, which can be found in `images` folder.
+
+After fitting all models, we summarize all regression coefficients including OLS in Table 1.
+
+```{r results='asis', echo=FALSE}
+library(xtable)
+library(Matrix)
+model_name = c("ols", "ridge", "lasso", "pcr", "plsr")
+for (i in model_name) {
+  load(paste0("../data/", i, "-data.RData"))
+}
+
+OLS = as.vector(ols_full_model$coefficients[-1])
+Ridge = as.vector(ridge_full_model$beta)
+Lasso = as.vector(lasso_full_model$beta)
+PCR = as.vector(pcr_full_model$coefficients[,1,pcr_best_ncomp])
+PLSR = as.vector(plsr_full_model$coefficients[,1,plsr_best_ncomp])
+coef_df = data.frame(OLS, Ridge, Lasso, PCR, PLSR)
+rnames = names(ols_full_model$coefficients[-1])
+row.names(coef_df) = rnames
+
+coef_table = xtable(coef_df, digits = 4, caption = "Regression Coefficients for All Models")
+print(coef_table, comment=FALSE)
+```
+
+The test MSE value is also a good way to evaluate results of different regression techniques (Table 2). 
+
+```{r results='asis', echo=FALSE}
+mse_df = data.frame(row.names=c("Test MSE"), 
+                    Ridge=ridge_mse, Lasso=lasso_mse, 
+                    PCR=pcr_mse, PLSR=plsr_mse, OLS=ols_mse)
+mse_table = xtable(round(mse_df,2), caption = "Test MSE Values for All Models")
+print(mse_table, comment=FALSE)
+```
+
+We can spot both difference and similarty in Chart 1 where all official coefficients are compared. 
+
+```{r echo=FALSE, warning=FALSE}
+library(reshape2)
+library(ggplot2)
+
+coef_df$id = 1:nrow(coef_df)
+melt_df = melt(coef_df, id.vars = "id")
+
+coef_plot = 
+  ggplot(melt_df, aes(x = factor(id), y = value)) + 
+  facet_wrap(~variable) +
+  geom_bar(aes(fill = factor(id)), stat = "identity") +
+  scale_fill_brewer(palette = "RdBu", name = "Predictors", labels=row.names(coef_table)) +
+  theme(axis.ticks = element_blank(), 
+        axis.text.x = element_blank(),
+        axis.title = element_blank(),
+        legend.position = "bottom",
+        panel.background = element_blank()) +
+  ggtitle("Chart 1. Barchart of Official Coefficients in Different Models")
+print(coef_plot)
+```
+
