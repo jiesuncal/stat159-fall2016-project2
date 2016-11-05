@@ -5,6 +5,10 @@ date: "November 4, 2016"
 output: ioslides_presentation
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
 ## Introduction
 
 This project is largely based on the chapter 5 and chapter 6 of the book Introduction to Statistical Learning by James El. As a case study, the book has introduced a credit data set for us to apply five different regression models. In the later sections, we are going to cover in details regarding the data set, the methods and the specific analysis.
@@ -89,4 +93,77 @@ In order to perform data analysis, it is important for us to understand the data
 
 ## Results
 
-## Conclusion
+Summary of all regression models' coefficients
+
+```{r results='asis', echo=FALSE}
+library(xtable)
+library(Matrix)
+
+model_name = c("ols", "ridge", "lasso", "pcr", "plsr")
+for (i in model_name) {
+  load(paste0("../data/", i, "-data.RData"))
+}
+
+OLS = as.vector(ols_full_model$coefficients[-1])
+Ridge = as.vector(ridge_full_model$beta)
+Lasso = as.vector(lasso_full_model$beta)
+PCR = as.vector(pcr_full_model$coefficients[,1,pcr_best_ncomp])
+PLSR = as.vector(plsr_full_model$coefficients[,1,plsr_best_ncomp])
+coef_df = data.frame(OLS, Ridge, Lasso, PCR, PLSR)
+rnames = names(ols_full_model$coefficients[-1])
+row.names(coef_df) = rnames
+
+coef_table = xtable(coef_df, digits = 4, caption = "Regression Coefficients for All Models")
+print(coef_table, comment=FALSE, type="html")
+```
+
+
+## Results
+The test MSE value is also a good way to evaluate results of different regression techniques (Table 2). 
+
+```{r results='asis', echo=FALSE}
+mse_df = data.frame(row.names=c("Test MSE"), 
+                    Ridge=ridge_mse, Lasso=lasso_mse, 
+                    PCR=pcr_mse, PLSR=plsr_mse, OLS=ols_mse)
+mse_table = xtable(round(mse_df,2), caption = "Test MSE Values for All Models")
+print(mse_table, comment=FALSE, type="html")
+```
+
+## Results
+
+```{r echo=FALSE, warning=FALSE}
+library(reshape2)
+library(ggplot2)
+
+coef_df$id = 1:nrow(coef_df)
+melt_df = melt(coef_df, id.vars = "id")
+
+coef_plot = 
+  ggplot(melt_df, aes(x = factor(id), y = value)) + 
+  facet_wrap(~variable) +
+  geom_bar(aes(fill = factor(id)), stat = "identity") +
+  scale_fill_brewer(palette = "RdBu", name = "Predictors", labels=row.names(coef_table)) +
+  theme(axis.ticks = element_blank(), 
+        axis.text.x = element_blank(),
+        axis.title = element_blank(),
+        legend.position = "bottom",
+        panel.background = element_blank()) +
+  ggtitle("Chart 1. Barchart of Official Coefficients in Different Models")
+print(coef_plot)
+```
+
+
+## Conclusions
+
+- Coefficients for `Age`, `Education`, `Gender`, `Married` and `Ethnicity` are generally smaller than others, which means they're less influential on the balance of a credit card user. 
+
+- `Income`, `Limit`, `Rating` and `Student` are better predictors in this case. And `Income` negatively associated with `Balance`. 
+
+- The comparison is especially obvious in Lasso regression since Lasso eliminates some variables by setting coefficients to 0. 
+
+## Conclusions
+
+- In terms of test MSE, Ridge = Lasso < PCR < PLSR. Shrinkage methods perform better than dimentaion reduction methods on this dataset. 
+
+- The takeaway here is that if you don't know which technique works better in the linear regression analysis, it's a good idea to try both on the dataset and choose the better one. 
+
