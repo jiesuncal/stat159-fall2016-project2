@@ -141,6 +141,41 @@
 <ul>
 <li><p>The partial least squares (PLS) is a supervised alternative to PCR. Like PCR, PLS first identifies a new set of features \(Z_1,...,Z_M\) that are linear combinations of the original features, and then fits a linear model via least squares using these \(M\) new features.</p></li>
 <li><p>Unlike PCR, PLS identifies these new features in a supervised way — that is, it makes use of the response \(Y\) in order to identify new features that not only approximate the old features well, but also that are related to the response. Roughly speaking, the PLS approach attempts to find directions that help explain both the response and the predictors.</p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Analysis</h2></hgroup><article  id="analysis">
+
+<ul>
+<li>Exploratory Phase</li>
+<li>Pre-modelling Data Processing</li>
+<li>Splitting Test Set and Train Set</li>
+<li>Cross-validation</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Exploratory Phase</h2></hgroup><article  id="exploratory-phase">
+
+<p>In order to perform data analysis, it is important for us to understand the data by obtaining descriptive statistics and summaries of the variables of our current data set.</p>
+
+</article></slide><slide class=''><hgroup><h2>Pre-modelling Data Processing</h2></hgroup><article  id="pre-modelling-data-processing">
+
+<ul>
+<li><p>The first step in this data processing part is to dummy out the categorical variables</p></li>
+<li><p>The second step in this data process is to perform mean centering and standardization</p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Splitting Test Set and Train Set</h2></hgroup><article  id="splitting-test-set-and-train-set">
+
+<ul>
+<li><p>Split the data set into train set and test set so we can avoid overfitting</p></li>
+<li><p>A test set of 100 rows of data</p></li>
+<li><p>A train set of 300 rows of data</p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Cross-validation</h2></hgroup><article  id="cross-validation">
+
+<ul>
+<li><p>Using 10-fold cross-validation to pick our best model</p></li>
+<li><p>Utilize <code>set.seed()</code> to ensure that our project results are reproducible</p></li>
 </ul></article></slide>
 
 

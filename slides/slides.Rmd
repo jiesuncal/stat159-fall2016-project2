@@ -60,5 +60,33 @@ Lasso overcomes the disadvantage of ridge regression by using $l_1$ penalty, whi
 
 - Unlike PCR, PLS identifies these new features in a supervised way — that is, it makes use of the response $Y$ in order to identify new features that not only approximate the old features well, but also that are related to the response. Roughly speaking, the PLS approach attempts to find directions that help explain both the response and the predictors. 
 
+## Analysis
 
+- Exploratory Phase
+- Pre-modelling Data Processing
+- Splitting Test Set and Train Set
+- Cross-validation
 
+## Exploratory Phase
+In order to perform data analysis, it is important for us to understand the data by obtaining descriptive statistics and summaries of the variables of our current data set.
+
+## Pre-modelling Data Processing
+- The first step in this data processing part is to dummy out the categorical variables
+
+- The second step in this data process is to perform mean centering and standardization 
+
+## Splitting Test Set and Train Set
+- Split the data set into train set and test set so we can avoid overfitting
+
+- A test set of 100 rows of data 
+
+- A train set of 300 rows of data
+
+## Cross-validation
+- Using 10-fold cross-validation to pick our best model
+
+- Utilize `set.seed()` to ensure that our project results are reproducible
+
+## Results
+
+## Conclusion
