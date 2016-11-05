@@ -1,4 +1,4 @@
-# shortcut variables for some commands
+# declare shortcut variables for some commands
 rs=rscript
 code=cd code
 scripts=cd code/scripts
@@ -14,7 +14,7 @@ data:
 	curl http://www-bcf.usc.edu/~gareth/ISL/Credit.csv > data/Credit.csv
 
 # run unit tests of functions
-tests: code/test-that.R code/tests/test-helper.R
+tests: code/test-that.R code/tests/test-helper.R code/tests/test-regression.R
 	$(code) && $(rs) test-that.R
 
 # perform the exploratory data analysis
@@ -53,8 +53,12 @@ regressions:
 	make pcr
 	make plsr
 
+# concatenate all sections into a report
+report/report.Rmd: report/sections/*.md
+	cat report/sections/*.Rmd > report/report.Rmd
+
 # generate report.pdf (or report.html)
-report: report/report.Rmd eda regressions
+report: report/report.Rmd eda preprocess regressions
 	$(rs) -e 'library(rmarkdown); render("report/report.Rmd","pdf_document")'
 	$(rs) -e 'library(rmarkdown); render("report/report.Rmd","html_document")'
 
@@ -62,9 +66,9 @@ report: report/report.Rmd eda regressions
 slides: slides/slides.Rmd
 	$(rs) -e 'library(rmarkdown); render("slides/slides.Rmd","html_document")'
 
-# generate session-info.txt
-session:
-	bash session.sh
+# generate session-info.txt using make automatic variable
+session: session.sh
+	bash $<
 
 # clean up report outputs
 clean:
